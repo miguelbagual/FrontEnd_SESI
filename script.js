@@ -19,8 +19,8 @@ function executarSistema(){
     //  Regra de negócio
     if(idade>=16){
         msg.innerText = `Venda autorizada: ${nome}`;
-        msg.style.color = "green";
-    }
+        msg.style.color = "#00ff88";
+
 
     //  Desconto
     let valorFinal = (valor>500 || cupom) ? valor * 0.85 : valor;
@@ -28,4 +28,27 @@ function executarSistema(){
     //  Estoque
     let estoque = ["Placa de Vídeo", "Processador", "Memória RAM"];
     lista.innerHTML = ""; //  Limpa a lista anterior
-}
+
+    // forEach: Percorre um array e aplica uma ação para cada elemento
+    estoque.forEach(item => {
+        let li = document.createElement("li");
+        li.innerText = `Item ${item} reservado.`;
+        lista.appendChild(li); // usado para adicionar um novo elemento
+    });
+    
+    relatorio.style.display = "block"
+    relatorio.innerHTML=`
+    <strong> RESUMO DO PEDIDO <\strong><br>
+    Cliente: ${nome}<br>
+    Total Original: R$ ${valor.toFixed(2)}<br>
+    <strong> Total com Desconto: R$${valorFinal.toFixed(2)} <\strong>`
+
+    } else {
+        msg.innerText = "Venda bloqueada: Menor de 16 Anos.";
+        msg.style.color = "#ff4444";
+        msg.style.fontWeight = "bold";
+        relatorio.style.display = "none";
+        lista.innerHTML = "";
+    }
+}   
+

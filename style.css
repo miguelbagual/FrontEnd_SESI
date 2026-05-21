@@ -51,7 +51,7 @@ button{
 }
 
 button:hover {
-    background-color: #ffffff;
+    background-color: #00c932;
     color: black
 }
 
@@ -62,7 +62,7 @@ ul{
 
 li{
     padding: 5px 0;
-    color: rgb(0, 0, 0)
+    color: rgb(255, 255, 255)
 }
 
 input, select{
@@ -85,4 +85,9 @@ p{
     color: rgb(255, 255, 255);
     text-align: center;
     margin: 20px 0;
+}
+
+.card{
+    background-color: #1a1a1a;
+    color: white;
 }

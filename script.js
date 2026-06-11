@@ -50,5 +50,4 @@ function executarSistema(){
         relatorio.style.display = "none";
         lista.innerHTML = "";
     }
-}   
-
+}

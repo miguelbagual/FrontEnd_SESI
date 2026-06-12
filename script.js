@@ -72,13 +72,27 @@ function voltarFormulario(){
     cadastro.style.display = "none"
 }
 
+//Váriavel e condição para permitir a escolha de cliente VIP
 const formvip=document.getElementById('opcaoVIP');
-let vip = false;
+let vip = true;
 
 if(vip===true){
     formvip.disabled= false;
 }
 else{
     formvip.disabled= true ;
+}
+
+function executarCadastro(){
+
+    const nomev = document.getElementById("nomevip").value;
+    const idadev = parseInt(document.getElementById("idadevip").value);
+    const cpfv = parseInt(document.getElementById("cpfvip").value);
+    const emailv = document.getElementById("emailvip").value;
+
+    if(!nomev || !emailv || isNaN(idadev) || isNaN(cpfv)){
+        alert("Por favor, preencha todos os campos!");
+        return;
+    }
 }
 

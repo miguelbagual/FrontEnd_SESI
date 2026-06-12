@@ -10,7 +10,7 @@
     <div class = "container">
         <h1>🛒TechStore SESI💻</h1>
         
-        <section class = "formulario" id="formulario-inicial" style="display: block;">
+        <section class = "formulario" id="form" style="display: block;">
             <h3>Dados da Venda:</h3>
             <input type="text" id="inputNome" placeholder="Nome do Cliente">
             <input type="number" id="inputIdade" placeholder="Idade do Cliente">
@@ -26,19 +26,21 @@
                 <option value="true">Sou cliente VIP.</option>
             </select>
 
-            <button id="irCadastrar" onclick="irCadastrar()">Não é cliente VIP? Clique aqui!</button>
+            <button id="trocarPagina" onclick="irCadastrar()">Não é cliente VIP? Clique aqui!</button>
 
             <button onclick="executarSistema()">Finalizar Venda</button>
 
         </section>
 
-        <section class="cadastrovip" style="display: block">
+        <section class="cadastrovip" id="cadastro" style="display: none">
 
-            <h3>Cadastro Vip:</h3>
+            <h3 id="tituloCadastro">Cadastro Vip:</h3>
             <input type="text" id="nomevip" placeholder="Nome do Cliente">
             <input type="number" id="idadevip" placeholder="Idade do Cliente">
             <input type="text" id="emailvip" placeholder="Email do Cliente">
             <input type="number" id="cpfvip" placeholder="CPF do Cliente">
+
+            <button id="trocarPagina" onclick="voltarFormulario()" id="botaoVoltar">Não deseja se cadastrar? Clique aqui!</button>
 
             <button onclick="executarCadastro()">Cadastrar</button>
 

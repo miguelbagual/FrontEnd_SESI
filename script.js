@@ -51,3 +51,21 @@ function executarSistema(){
         lista.innerHTML = "";
     }
 }
+
+function irCadastrar(){
+
+    const formulario = document.getElementById("form");
+    const cadastro = document.getElementById("cadastro");
+
+    formulario.style.display = "none"
+    cadastro.style.display = "block"
+}
+
+function voltarFormulario(){
+
+    const formulario = document.getElementById("form");
+    const cadastro = document.getElementById("cadastro");
+
+    formulario.style.display = "block"
+    cadastro.style.display = "none"
+}

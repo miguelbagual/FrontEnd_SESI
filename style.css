@@ -111,3 +111,11 @@ p{
 #trocarPagina:hover{
     color: rgb(0, 221, 0);
 }
+
+#tituloCadastro{
+    color: darkturquoise;
+}
+
+#botaoCadastro:hover{
+    background-color: darkturquoise;
+}

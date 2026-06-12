@@ -1,3 +1,4 @@
+//Função de compra
 function executarSistema(){
     //  Dados de Entrada
     const nome = document.getElementById("inputNome").value;
@@ -52,6 +53,7 @@ function executarSistema(){
     }
 }
 
+//Funções para trocar da compra para o cadastro VIP
 function irCadastrar(){
 
     const formulario = document.getElementById("form");
@@ -69,3 +71,14 @@ function voltarFormulario(){
     formulario.style.display = "block"
     cadastro.style.display = "none"
 }
+
+const formvip=document.getElementById('opcaoVIP');
+let vip = false;
+
+if(vip===true){
+    formvip.disabled= false;
+}
+else{
+    formvip.disabled= true ;
+}
+

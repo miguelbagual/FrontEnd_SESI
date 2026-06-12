@@ -23,7 +23,7 @@
 
             <select id="inputVIP">
                 <option value="false">Não sou cliente VIP.</option>
-                <option value="true">Sou cliente VIP.</option>
+                <option id="opcaoVIP" value="true" disabled>Sou cliente VIP.</option>
             </select>
 
             <button id="trocarPagina" onclick="irCadastrar()">Não é cliente VIP? Clique aqui!</button>
@@ -34,7 +34,7 @@
 
         <section class="cadastrovip" id="cadastro" style="display: none">
 
-            <h3 id="tituloCadastro">Cadastro Vip:</h3>
+            <h3 id="tituloCadastro">💎Cadastro Vip💎:</h3>
             <input type="text" id="nomevip" placeholder="Nome do Cliente">
             <input type="number" id="idadevip" placeholder="Idade do Cliente">
             <input type="text" id="emailvip" placeholder="Email do Cliente">
@@ -42,7 +42,7 @@
 
             <button id="trocarPagina" onclick="voltarFormulario()" id="botaoVoltar">Não deseja se cadastrar? Clique aqui!</button>
 
-            <button onclick="executarCadastro()">Cadastrar</button>
+            <button onclick="executarCadastro()" id="botaoCadastro">Cadastrar</button>
 
         </section>
 

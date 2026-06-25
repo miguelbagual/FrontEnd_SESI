@@ -1,4 +1,3 @@
-
 function executarCadastro(){
 
     const nomev = document.getElementById("nomevip").value;
@@ -11,6 +10,9 @@ function executarCadastro(){
         return;
     }
 
+    //Quando cadastrar, salva que esse nome específico virou VIP
+    localStorage.setItem(nomev + "ehVip", "true");
+
     formvip.disabled= false;
 
     const formulario = document.getElementById("form");
@@ -18,14 +20,24 @@ function executarCadastro(){
 
     formulario.style.display = "block"
     cadastro.style.display = "none"
-
-
 }
-
 
 //Escolha de cliente VIP não é permitida
 const formvip=document.getElementById('opcaoVIP');
 formvip.disabled= true;
+
+// Se ele já for VIP no sistema, libera a opção automaticamente
+function verificarSeJaEVip() {
+    const formvip=document.getElementById('opcaoVIP');
+    const nome = document.getElementById("inputNome").value;
+    
+    if(localStorage.getItem(nome + "ehVip") == "true") {
+        formvip.disabled = false; // Desbloqueia se for VIP
+    } else {
+        formvip.disabled = true;  // Bloqueia de novo se apagar ou mudar o nome
+        document.getElementById("inputVIP").value = "false"; // Força voltar para "Não sou VIP"
+    }
+}
 
 //Função de compra
 function executarSistema(){
@@ -35,8 +47,6 @@ function executarSistema(){
     const valor = parseFloat(document.getElementById("inputValor").value);
     const cupom = document.getElementById("inputCupom").value === "true";
     const marcadovip = document.getElementById("inputVIP").value === "true";
-
-    localStorage.setItem("nome",)
 
     //  Dados de saída
     const msg = document.getElementById("mensagem-autorizacao");
@@ -53,6 +63,11 @@ function executarSistema(){
     if(idade>=16){
         msg.innerText = `Venda autorizada: ${nome}`;
         msg.style.color = "#00ff88";
+
+        // Pega as compras do cliente, soma 1 e salva
+        let comprasDoCliente = parseInt(localStorage.getItem(nome)) || 0;
+        comprasDoCliente++;
+        localStorage.setItem(nome, comprasDoCliente);
 
     //  Desconto
         if(marcadovip===true){
@@ -71,11 +86,11 @@ function executarSistema(){
                 
             relatorio.style.display = "block"
             relatorio.innerHTML=`
-            <strong> RESUMO DO PEDIDO <\strong><br>
+            <strong> RESUMO DO PEDIDO </strong><br>
             Cliente: ${nome}<br>
             Total Original: R$ ${valor.toFixed(2)}<br>
             Desconto para cliente VIP: 10%<br>
-            <strong> Total com Desconto: R$${valorFinal.toFixed(2)} <\strong>`
+            <strong> Total com Desconto: R$${valorFinal.toFixed(2)} </strong>`
         }
         else{
             valorFinal = (valor>500 || cupom) ? valor * 0.85 : valor;
@@ -93,10 +108,10 @@ function executarSistema(){
                 
             relatorio.style.display = "block"
             relatorio.innerHTML=`
-            <strong> RESUMO DO PEDIDO <\strong><br>
+            <strong> RESUMO DO PEDIDO </strong><br>
             Cliente: ${nome}<br>
             Total Original: R$ ${valor.toFixed(2)}<br>
-            <strong> Total com Desconto: R$${valorFinal.toFixed(2)} <\strong>`
+            <strong> Total com Desconto: R$${valorFinal.toFixed(2)} </strong>`
         }
     } else {
         msg.innerText = "Venda bloqueada: Menor de 16 Anos.";
@@ -107,14 +122,36 @@ function executarSistema(){
     }
 }
 
+// Variavel para permitir ou não o cadastro
+let podeVip = false;
+
 //Funções para trocar da compra para o cadastro VIP
 function irCadastrar(){
+    const nome = document.getElementById("inputNome").value;
 
-    const formulario = document.getElementById("form");
-    const cadastro = document.getElementById("cadastro");
+    // Pega quantas compras o nome digitado tem
+    let comprasDoCliente = parseInt(localStorage.getItem(nome)) || 0;
 
-    formulario.style.display = "none"
-    cadastro.style.display = "block"
+    // Se o cliente digitado tiver 5 ou mais compras, pode realizar o cadastro.
+    if(comprasDoCliente >= 5) {
+        podeVip = true;
+    } else {
+        podeVip = false;
+    }
+
+    if(podeVip===true){
+        const formulario = document.getElementById("form");
+        const cadastro = document.getElementById("cadastro");
+    
+        formulario.style.display = "none"
+        cadastro.style.display = "block"
+
+        document.getElementById("nomevip").value = nome;
+    }
+    else{
+        alert("Realize 5 compras para poder se tornar VIP! Você tem: " + comprasDoCliente);
+    }
+
 }
 
 function voltarFormulario(){

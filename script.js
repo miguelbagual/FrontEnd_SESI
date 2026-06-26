@@ -10,7 +10,7 @@ function executarCadastro(){
         return;
     }
 
-    //Quando cadastrar, salva que esse nome específico virou VIP
+    //Quando cadastrar, salva que esse nome específico virou VIP (IA)
     localStorage.setItem(nomev + "ehVip", "true");
 
     formvip.disabled= false;
@@ -26,7 +26,7 @@ function executarCadastro(){
 const formvip=document.getElementById('opcaoVIP');
 formvip.disabled= true;
 
-// Se ele já for VIP no sistema, libera a opção automaticamente
+// Se ele já for VIP no sistema, libera a opção automaticamente (IA)
 function verificarSeJaEVip() {
     const formvip=document.getElementById('opcaoVIP');
     const nome = document.getElementById("inputNome").value;
@@ -64,7 +64,7 @@ function executarSistema(){
         msg.innerText = `Venda autorizada: ${nome}`;
         msg.style.color = "#00ff88";
 
-        // Pega as compras do cliente, soma 1 e salva
+        // Pega as compras do cliente, soma 1 e salva (IA)
         let comprasDoCliente = parseInt(localStorage.getItem(nome)) || 0;
         comprasDoCliente++;
         localStorage.setItem(nome, comprasDoCliente);
@@ -129,7 +129,7 @@ let podeVip = false;
 function irCadastrar(){
     const nome = document.getElementById("inputNome").value;
 
-    // Pega quantas compras o nome digitado tem
+    // Pega quantas compras o nome digitado tem (IA)
     let comprasDoCliente = parseInt(localStorage.getItem(nome)) || 0;
 
     // Se o cliente digitado tiver 5 ou mais compras, pode realizar o cadastro.
@@ -146,7 +146,7 @@ function irCadastrar(){
         formulario.style.display = "none"
         cadastro.style.display = "block"
 
-        document.getElementById("nomevip").value = nome;
+        document.getElementById("nomevip").value = nome; //Quando vai se cadastrar, o nome do formulário vai para o cadastro (IA)
     }
     else{
         alert("Realize 5 compras para poder se tornar VIP! Você tem: " + comprasDoCliente);
